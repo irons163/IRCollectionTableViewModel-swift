@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func collectionViewButtonClick(_ sender: Any) {
+        let collectionViewController = CollectionViewController.init()
+        collectionViewController.modalPresentationStyle = .fullScreen
+        self.present(collectionViewController, animated: true, completion: nil)
     }
 }
 

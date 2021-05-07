@@ -23,6 +23,26 @@
 		4A44E2C325246FA300CE3540 /* TableViewSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44E2C225246FA300CE3540 /* TableViewSectionType.swift */; };
 		4A44E2C42524730F00CE3540 /* IRCollectionTableViewModel_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A44E29C252326F400CE3540 /* IRCollectionTableViewModel_swift.framework */; };
 		4A44E2C52524731000CE3540 /* IRCollectionTableViewModel_swift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A44E29C252326F400CE3540 /* IRCollectionTableViewModel_swift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A48753F25E0E84400BE80D4 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48753D25E0E84400BE80D4 /* CollectionViewController.swift */; };
+		4A48754025E0E84400BE80D4 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A48753E25E0E84400BE80D4 /* CollectionViewController.xib */; };
+		4A48754425E0E89600BE80D4 /* CollectionBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48754325E0E89600BE80D4 /* CollectionBrowser.swift */; };
+		4A48754625E0E89F00BE80D4 /* CollectionBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A48754525E0E89F00BE80D4 /* CollectionBrowser.xib */; };
+		4A48754A25E0E8D000BE80D4 /* CollectionBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48754925E0E8D000BE80D4 /* CollectionBrowserViewModel.swift */; };
+		4A48754C25E0E8F800BE80D4 /* MonitorableFolderClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48754B25E0E8F800BE80D4 /* MonitorableFolderClass.swift */; };
+		4A48754E25E0E90200BE80D4 /* MonitorableFileClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48754D25E0E90200BE80D4 /* MonitorableFileClass.swift */; };
+		4A48755025E0E91300BE80D4 /* Monitorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48754F25E0E91300BE80D4 /* Monitorable.swift */; };
+		4A48755225E0E93600BE80D4 /* MonitorBrowserSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48755125E0E93600BE80D4 /* MonitorBrowserSectionType.swift */; };
+		4A48755425E0E94F00BE80D4 /* MonitorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48755325E0E94F00BE80D4 /* MonitorHeaderView.swift */; };
+		4A48755625E0E95700BE80D4 /* MonitorHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A48755525E0E95700BE80D4 /* MonitorHeaderView.xib */; };
+		4A48755925E0E96C00BE80D4 /* MonitorFolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48755725E0E96C00BE80D4 /* MonitorFolderTableViewCell.swift */; };
+		4A48755A25E0E96C00BE80D4 /* MonitorFolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A48755825E0E96C00BE80D4 /* MonitorFolderTableViewCell.xib */; };
+		4A48755D25E0E97C00BE80D4 /* MonitorFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48755B25E0E97C00BE80D4 /* MonitorFileTableViewCell.swift */; };
+		4A48755E25E0E97C00BE80D4 /* MonitorFileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A48755C25E0E97C00BE80D4 /* MonitorFileTableViewCell.xib */; };
+		4A48756125E0E99500BE80D4 /* MonitorFileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48755F25E0E99500BE80D4 /* MonitorFileCollectionViewCell.swift */; };
+		4A48756225E0E99500BE80D4 /* MonitorFileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A48756025E0E99500BE80D4 /* MonitorFileCollectionViewCell.xib */; };
+		4A48756525E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48756325E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.swift */; };
+		4A48756625E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A48756425E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.xib */; };
+		4A48756825E0E9D100BE80D4 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A48756725E0E9D100BE80D4 /* CustomCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +87,26 @@
 		4A44E2B7252462A100CE3540 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		4A44E2BC2524637100CE3540 /* TableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewViewModel.swift; sourceTree = "<group>"; };
 		4A44E2C225246FA300CE3540 /* TableViewSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSectionType.swift; sourceTree = "<group>"; };
+		4A48753D25E0E84400BE80D4 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		4A48753E25E0E84400BE80D4 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		4A48754325E0E89600BE80D4 /* CollectionBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBrowser.swift; sourceTree = "<group>"; };
+		4A48754525E0E89F00BE80D4 /* CollectionBrowser.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionBrowser.xib; sourceTree = "<group>"; };
+		4A48754925E0E8D000BE80D4 /* CollectionBrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionBrowserViewModel.swift; sourceTree = "<group>"; };
+		4A48754B25E0E8F800BE80D4 /* MonitorableFolderClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorableFolderClass.swift; sourceTree = "<group>"; };
+		4A48754D25E0E90200BE80D4 /* MonitorableFileClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorableFileClass.swift; sourceTree = "<group>"; };
+		4A48754F25E0E91300BE80D4 /* Monitorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitorable.swift; sourceTree = "<group>"; };
+		4A48755125E0E93600BE80D4 /* MonitorBrowserSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorBrowserSectionType.swift; sourceTree = "<group>"; };
+		4A48755325E0E94F00BE80D4 /* MonitorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorHeaderView.swift; sourceTree = "<group>"; };
+		4A48755525E0E95700BE80D4 /* MonitorHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitorHeaderView.xib; sourceTree = "<group>"; };
+		4A48755725E0E96C00BE80D4 /* MonitorFolderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorFolderTableViewCell.swift; sourceTree = "<group>"; };
+		4A48755825E0E96C00BE80D4 /* MonitorFolderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitorFolderTableViewCell.xib; sourceTree = "<group>"; };
+		4A48755B25E0E97C00BE80D4 /* MonitorFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorFileTableViewCell.swift; sourceTree = "<group>"; };
+		4A48755C25E0E97C00BE80D4 /* MonitorFileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitorFileTableViewCell.xib; sourceTree = "<group>"; };
+		4A48755F25E0E99500BE80D4 /* MonitorFileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorFileCollectionViewCell.swift; sourceTree = "<group>"; };
+		4A48756025E0E99500BE80D4 /* MonitorFileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitorFileCollectionViewCell.xib; sourceTree = "<group>"; };
+		4A48756325E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorFolderCollectionViewCell.swift; sourceTree = "<group>"; };
+		4A48756425E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitorFolderCollectionViewCell.xib; sourceTree = "<group>"; };
+		4A48756725E0E9D100BE80D4 /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,12 +142,15 @@
 		4A44E282252326DC00CE3540 /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				4A48754225E0E87200BE80D4 /* CollectionView */,
 				4A44E2B12524618700CE3540 /* TableView */,
 				4A44E283252326DC00CE3540 /* AppDelegate.swift */,
 				4A44E285252326DC00CE3540 /* SceneDelegate.swift */,
 				4A44E287252326DC00CE3540 /* ViewController.swift */,
 				4A44E2AD2524610600CE3540 /* TableViewController.swift */,
 				4A44E2AE2524610600CE3540 /* TableViewController.xib */,
+				4A48753D25E0E84400BE80D4 /* CollectionViewController.swift */,
+				4A48753E25E0E84400BE80D4 /* CollectionViewController.xib */,
 				4A44E289252326DC00CE3540 /* Main.storyboard */,
 				4A44E28C252326DF00CE3540 /* Assets.xcassets */,
 				4A44E28E252326DF00CE3540 /* LaunchScreen.storyboard */,
@@ -158,6 +201,47 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A48754225E0E87200BE80D4 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				4A48754325E0E89600BE80D4 /* CollectionBrowser.swift */,
+				4A48754525E0E89F00BE80D4 /* CollectionBrowser.xib */,
+				4A48754825E0E8AC00BE80D4 /* Model */,
+				4A48754725E0E8A500BE80D4 /* View */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		4A48754725E0E8A500BE80D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A48755325E0E94F00BE80D4 /* MonitorHeaderView.swift */,
+				4A48755525E0E95700BE80D4 /* MonitorHeaderView.xib */,
+				4A48755725E0E96C00BE80D4 /* MonitorFolderTableViewCell.swift */,
+				4A48755825E0E96C00BE80D4 /* MonitorFolderTableViewCell.xib */,
+				4A48755B25E0E97C00BE80D4 /* MonitorFileTableViewCell.swift */,
+				4A48755C25E0E97C00BE80D4 /* MonitorFileTableViewCell.xib */,
+				4A48755F25E0E99500BE80D4 /* MonitorFileCollectionViewCell.swift */,
+				4A48756025E0E99500BE80D4 /* MonitorFileCollectionViewCell.xib */,
+				4A48756325E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.swift */,
+				4A48756425E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.xib */,
+				4A48756725E0E9D100BE80D4 /* CustomCollectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A48754825E0E8AC00BE80D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A48754F25E0E91300BE80D4 /* Monitorable.swift */,
+				4A48754925E0E8D000BE80D4 /* CollectionBrowserViewModel.swift */,
+				4A48755125E0E93600BE80D4 /* MonitorBrowserSectionType.swift */,
+				4A48754B25E0E8F800BE80D4 /* MonitorableFolderClass.swift */,
+				4A48754D25E0E90200BE80D4 /* MonitorableFileClass.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,10 +321,17 @@
 			files = (
 				4A44E290252326DF00CE3540 /* LaunchScreen.storyboard in Resources */,
 				4A44E2B9252462A100CE3540 /* TableViewCell.xib in Resources */,
+				4A48755E25E0E97C00BE80D4 /* MonitorFileTableViewCell.xib in Resources */,
+				4A48754025E0E84400BE80D4 /* CollectionViewController.xib in Resources */,
 				4A44E28D252326DF00CE3540 /* Assets.xcassets in Resources */,
 				4A44E28B252326DC00CE3540 /* Main.storyboard in Resources */,
 				4A44E2B02524610600CE3540 /* TableViewController.xib in Resources */,
+				4A48756225E0E99500BE80D4 /* MonitorFileCollectionViewCell.xib in Resources */,
+				4A48755A25E0E96C00BE80D4 /* MonitorFolderTableViewCell.xib in Resources */,
+				4A48755625E0E95700BE80D4 /* MonitorHeaderView.xib in Resources */,
+				4A48754625E0E89F00BE80D4 /* CollectionBrowser.xib in Resources */,
 				4A44E2B5252461B300CE3540 /* TableViewHeaderView.xib in Resources */,
+				4A48756625E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +342,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A48755025E0E91300BE80D4 /* Monitorable.swift in Sources */,
+				4A48753F25E0E84400BE80D4 /* CollectionViewController.swift in Sources */,
 				4A44E288252326DC00CE3540 /* ViewController.swift in Sources */,
+				4A48756525E0E9AE00BE80D4 /* MonitorFolderCollectionViewCell.swift in Sources */,
+				4A48754A25E0E8D000BE80D4 /* CollectionBrowserViewModel.swift in Sources */,
 				4A44E2BD2524637100CE3540 /* TableViewViewModel.swift in Sources */,
 				4A44E2B3252461A100CE3540 /* TableViewHeaderView.swift in Sources */,
+				4A48754C25E0E8F800BE80D4 /* MonitorableFolderClass.swift in Sources */,
+				4A48754E25E0E90200BE80D4 /* MonitorableFileClass.swift in Sources */,
+				4A48755925E0E96C00BE80D4 /* MonitorFolderTableViewCell.swift in Sources */,
+				4A48755225E0E93600BE80D4 /* MonitorBrowserSectionType.swift in Sources */,
 				4A44E284252326DC00CE3540 /* AppDelegate.swift in Sources */,
+				4A48756825E0E9D100BE80D4 /* CustomCollectionView.swift in Sources */,
 				4A44E2B8252462A100CE3540 /* TableViewCell.swift in Sources */,
+				4A48756125E0E99500BE80D4 /* MonitorFileCollectionViewCell.swift in Sources */,
+				4A48754425E0E89600BE80D4 /* CollectionBrowser.swift in Sources */,
 				4A44E286252326DC00CE3540 /* SceneDelegate.swift in Sources */,
 				4A44E2AF2524610600CE3540 /* TableViewController.swift in Sources */,
+				4A48755425E0E94F00BE80D4 /* MonitorHeaderView.swift in Sources */,
+				4A48755D25E0E97C00BE80D4 /* MonitorFileTableViewCell.swift in Sources */,
 				4A44E2C325246FA300CE3540 /* TableViewSectionType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,11 +438,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -388,10 +493,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -405,6 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +530,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

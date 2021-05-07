@@ -8,6 +8,13 @@
 
 import Foundation
 
-public enum SectionType: NSInteger {
-    case NONE
-}
+//public enum SectionType: NSInteger {
+//    case NONE
+//}
+public typealias SectionType = NSInteger
+//public typealias NONE = NSInteger
+//public enum SectionType2: SectionType {
+//    public typealias RawValue = .NONE2
+//
+//    case NONE2
+//}

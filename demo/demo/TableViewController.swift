@@ -30,7 +30,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeaderView: TableViewHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableViewHeaderView.identifier()) as! TableViewHeaderView
         sectionHeaderView.titleLabel.text = viewModel!.getSectionTitleinSection(section: section)
-        switch viewModel!.getSectionTypeinSection(section: section).rawValue {
+        switch viewModel!.getSectionTypeinSection(section: section) {
         case TableViewSectionType.DemoSection.rawValue:
             break
         default:

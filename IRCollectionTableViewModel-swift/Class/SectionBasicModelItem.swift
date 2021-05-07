@@ -21,7 +21,8 @@ open class SectionBasicModelItem: NSObject, SectionModelItem {
     }
     
     open func type() -> SectionType {
-        return .NONE
+//        return .NONE
+        return 0
     }
     
     open func rowCount() -> NSInteger {

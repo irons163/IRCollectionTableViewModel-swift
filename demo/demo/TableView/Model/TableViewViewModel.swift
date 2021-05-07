@@ -11,7 +11,7 @@ import IRCollectionTableViewModel_swift
 
 class TableViewRowItem: RowBasicModelItem {
     var newType: ProfileRowType = .RowType_DemoRow
-    override public private(set) var type: ProfileRowType.RawValue {
+    override public var type: ProfileRowType.RawValue {
         set {
             self.newType = ProfileRowType(rawValue: newValue)!
         }
@@ -27,7 +27,7 @@ class TableViewRowItem: RowBasicModelItem {
 
 class TableViewSectionItem: SectionBasicModelItem {
     private var _sectionTitle: String?
-    private var _type: SectionType = .NONE
+    private var _type: TableViewSectionType = .DemoSection
     
     override init(rowCount: UInt) {
         super.init(rowCount: rowCount)
@@ -42,10 +42,10 @@ class TableViewSectionItem: SectionBasicModelItem {
     }
     
     override func type() -> SectionType {
-        return self._type
+        return self._type.rawValue
     }
     
-    open func type(_ type: SectionType) {
+    open func type(_ type: TableViewSectionType) {
         self._type = type
     }
 }
@@ -84,7 +84,7 @@ class TableViewViewModel: TableViewBasicViewModel, UITableViewDataSource, UIText
         }
         
         let item = TableViewSectionItem.init(rowCount: UInt(rowItems.count))
-        item.type(SectionType(rawValue: ProfileRowType.RowType_DemoRow.rawValue)!)
+        item.type(.DemoSection)
         item.sectionTitle("Demo Section")
         item.rows = rowItems
         self.items.append(item)

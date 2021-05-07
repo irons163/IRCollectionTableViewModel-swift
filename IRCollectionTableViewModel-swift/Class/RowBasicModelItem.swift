@@ -10,15 +10,23 @@ import AVFoundation
 import UIKit
 
 open class RowBasicModelItem: NSObject {
-    open private(set) var type: RowType
+    var rowType: RowType = 0
+    open var type: RowType {
+        set {
+            rowType = newValue
+        }
+        get {
+            return rowType
+        }
+    }
     public private(set) var title: String?
     public internal(set) var tagRange: NSRange // length default == 1
     
     public init(type: RowType, title: String) {
-        self.type = type
         self.title = title
         self.tagRange = NSRange.init(location: 0, length: 1)
         super.init()
+        self.type = type
     }
     
     public func setTagRangeLength(length: UInt) {
