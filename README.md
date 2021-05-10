@@ -4,6 +4,7 @@
 # IRCollectionTableViewModel-swift 
 
 - IRCollectionTableViewModel-swift is a powerful MVVM Tableview/CollectionView for iOS, which is flexible and can easy to handle and reuse.
+- The Objc version [IRCollectionTableViewModel](https://github.com/irons163/IRCollectionTableViewModel).
 
 ## Features
 - MVVM structure.
@@ -33,159 +34,157 @@
 
 #### TableView
 
-- Create a new class `TableViewViewModel` extends `TableViewBasicViewModel<UITableViewDataSource>`, and Import `IRCollectionTableViewModel-swift`
-```obj-c
-#import <IRCollectionTableViewModel/IRCollectionTableViewModel.h>
+- Create a new class `TableViewViewModel` extends `TableViewBasicViewModel` and `UITableViewDataSource`, and Import `IRCollectionTableViewModel-swift`
+```swift
+import IRCollectionTableViewModel_swift
 
-@interface TableViewViewModel : TableViewBasicViewModel<UITableViewDataSource>
-
-@end
+class TableViewViewModel: TableViewBasicViewModel, UITableViewDataSource {
+    ...
+}
 ```
 
 - You can add your init method and register the cell inside
 
-```objc
-- (instancetype)initWithTableView:(UITableView*)tableView;
-
-...
-
-- (instancetype)initWithTableView:(UITableView *)tableView {
-    if (self = [super init]) {
-        items = [[NSMutableArray<id<SectionModelItem>> alloc] init];
-        
-        [tableView registerNib:[UINib nibWithNibName:CELL_NIB_NAME bundle:nil] forCellReuseIdentifier:CELL_IDENTIFIER];
-    }
-    return self;
+```swift
+init(tableView: UITableView) {
+    super.init()
+    items = []
+    
+    tableView.register(UINib.init(nibName: TableViewCell.identifier(), bundle: nil), forCellReuseIdentifier: TableViewCell.identifier())
 }
 ```
 
 - Add  `update` method
-```objc
-- (void)update;
-
-...
-
-- (void)update {
-    [items removeAllObjects];
-    // Setup items
-    // [self setupRows];
+```swift
+func update() {
+    items.removeAll()
+    self.setupRows()
 }
-
 ```
 
 - For setup `items`, other words, setup the sections/rows you want to show. Create `TableViewSectionItem`  and `TableViewRowItem`, `DemoSectionType`, `DemoRowType`
-```objc
-typedef NS_ENUM(NSInteger, DemoSectionType){
-    DemoSection
-};
+```swift
+enum TableViewSectionType: NSInteger {
+    case DemoSection
+}
 
-typedef NS_ENUM(NSInteger, DemoRowType){
-    RowType_DemoRow
-};
+internal enum ProfileRowType : NSInteger {
 
-@interface TableViewRowItem : RowBasicModelItem
-@property (readonly) DemoRowType type;
-@end
+    case RowType_DemoRow
+}
 
-@interface TableViewSectionItem : SectionBasicModelItem
-@property (nonatomic) NSString* sectionTitle;
-@property (nonatomic) SectionType type;
-@end
-```
+class TableViewRowItem: RowBasicModelItem {
+    var newType: ProfileRowType = .RowType_DemoRow
+    override public var type: ProfileRowType.RawValue {
+        set {
+            self.newType = ProfileRowType(rawValue: newValue)!
+        }
+        get {
+            return newType.rawValue
+        }
+    }
+    
+    override init(type: RowType, title: String) {
+        super.init(type: type, title: title)
+    }
+}
 
-- Implementation `TableViewSectionItem`  and `TableViewRowItem` in the `TableViewViewModel.m`
-```objc
-@implementation TableViewRowItem
-@dynamic type;
-@end
-
-@implementation TableViewSectionItem
-@end
+class TableViewSectionItem: SectionBasicModelItem {
+    private var _sectionTitle: String?
+    private var _type: TableViewSectionType = .DemoSection
+    
+    override init(rowCount: UInt) {
+        super.init(rowCount: rowCount)
+    }
+    
+    override func sectionTitle() -> String? {
+        return self._sectionTitle
+    }
+    
+    open func sectionTitle(_ sectionTitle: String) {
+        self._sectionTitle = sectionTitle
+    }
+    
+    override func type() -> SectionType {
+        return self._type.rawValue
+    }
+    
+    open func type(_ type: TableViewSectionType) {
+        self._type = type
+    }
+}
 ```
 
 - Setup `items`
-```obj-c
-- (void)setupRows {
-    NSMutableArray *rowItems = [NSMutableArray array];
-    [rowItems addObject:[[TableViewRowItem alloc] initWithType:RowType_DemoRow withTitle:@"Demo Row"]];
-    [rowItems addObject:[[TableViewRowItem alloc] initWithType:RowType_DemoRow withTitle:@"Demo Row"]];
+```swift
+func setupRows() {
+    var rowItems: [RowBasicModelItem] = []
+    rowItems.append(TableViewRowItem.init(type: ProfileRowType.RowType_DemoRow.rawValue, title: "Demo Row"))
+    rowItems.append(TableViewRowItem.init(type: ProfileRowType.RowType_DemoRow.rawValue, title: "Demo Row"))
+    editedTexts = []
+    for _ in rowItems {
+        editedTexts.append("")
+    }
     
-    NSArray *demoRowItems = [NSArray arrayWithArray:rowItems];
-    TableViewSectionItem *item = [[TableViewSectionItem alloc] initWithRowCount:[demoRowItems count]];
-    item.type = DemoSection;
-    item.sectionTitle = @"Demo Section";
-    item.rows = demoRowItems;
-    [items addObject:item];
+    let item = TableViewSectionItem.init(rowCount: UInt(rowItems.count))
+    item.type(.DemoSection)
+    item.sectionTitle("Demo Section")
+    item.rows = rowItems
+    self.items.append(item)
 }
 ```
 
 - Override `UITableViewDataSource`
-```obj-c
-#pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return items.count;
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [items[section] rowCount];
-}
-
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    id<SectionModelItem> item = [items objectAtIndex:indexPath.section];
-    TableViewRowItem *row = (TableViewRowItem *)[item.rows objectAtIndex:[indexPath row]];
-    
-    switch (item.type) {
-        case DemoSection:
-        {
-            switch (row.type) {
-                case RowType_DemoRow:
-                {
-                    TableViewCell *cell = (TableViewCell *)[tableView dequeueReusableCellWithIdentifier:TableViewCell.identifier forIndexPath:indexPath];
-                    cell.titleLabel.text = [NSString stringWithFormat:@"%@%ld", row.title, row.tagRange.location];
-                    cell.editTextField.text = [editedTexts objectAtIndex:indexPath.row];
-                    cell.editTextField.tag = row.tagRange.location;
-                    cell.editTextField.delegate = self;
-                    return cell;
-                }
-            }
-            break;
-        }
-        default:
-            break;
+```swift
+// MARK: - UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return items.count
     }
-    return [[UITableViewCell alloc] init];
-}
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items[section].rowCount()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.section]
+        let row = item.rows[indexPath.row]
+        
+        switch row.type {
+        case ProfileRowType.RowType_DemoRow.rawValue:
+            do {
+                let cell: TableViewCell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier(), for: indexPath) as! TableViewCell
+                cell.titleLabel.text = String.init(format: "%@%ld", row.title!, row.tagRange.location)
+                cell.editTextField.text = self.editedTexts[indexPath.row] as String
+                cell.editTextField.tag = row.tagRange.location
+                cell.editTextField.delegate = self
+                return cell
+            }
+        default:
+            break
+        }
+        return UITableViewCell.init()
+    }
 ```
 
 - Use your view model `TableViewViewModel`
-```objc
-#import "TableViewViewModel.h"
+```swift
+var viewModel: TableViewViewModel?
 
-@implementation TableViewController {
-    TableViewViewModel *viewModel;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:HEADER_VIEW_NIB_NAME bundle:nil] forHeaderFooterViewReuseIdentifier:HEADER_VIEW_IDENTIFIER];
-    viewModel = [[TableViewViewModel alloc] initWithTableView:_tableView];
-    _tableView.dataSource = viewModel;
-    [viewModel update];
-}
-
-@end
+self.tableView.register(UINib.init(nibName: TableViewHeaderView.identifier(), bundle: nil), forHeaderFooterViewReuseIdentifier: TableViewHeaderView.identifier())
+viewModel = TableViewViewModel.init(tableView: self.tableView)
+self.tableView.dataSource = viewModel
+viewModel!.update()
 ```
 
 #### CollectionView
 
-- Just the same way of `TableViewViewModel`. Create a new class `CustomCollectionViewModel` extends `TableViewBasicViewModel<UICollectionViewDataSource>`, and Import this `CustomCollectionViewModel` to view controller
+- Just the same way of `TableViewViewModel`. Create a new class `CustomCollectionViewModel` extends `TableViewBasicViewModel` and `UICollectionViewDataSource`.
 
-- You can add your init method and register the cell inside
+- You can add your init method and register the cell inside.
 
-- For setup `items`, other words, setup the sections/rows you want to show. Create `CustomCollectionSectionItem`  and `CustomCollectionRowItem`, `CustomCollectionSectionType`
+- For setup `items`, other words, setup the sections/rows you want to show. Create `CustomCollectionSectionItem`  and `CustomCollectionRowItem`, `CustomCollectionSectionType`.
 
-- Override `UICollectionViewDataSource` 
+- Override `UICollectionViewDataSource`.
 
 
 ### Advanced settings
@@ -194,65 +193,66 @@ typedef NS_ENUM(NSInteger, DemoRowType){
 
 - `TableViewBasicViewModel` provides some usage methods
 
-```objc
-- (NSInteger)getRowTypeWith:(SectionType)type row:(NSInteger)row;
-- (NSString *)getSectionTitleinSection:(NSInteger)section;
-- (UIImage *)getSectionLeftIconinSection:(NSInteger)section;
-- (SectionType)getSectionTypeinSection:(NSInteger)section;
-- (void)hideRows:(BOOL)hide inSection:(NSInteger)section;
-- (BOOL)hiddenRowsinSection:(NSInteger)section;
-- (NSIndexSet *)getIndexSetWithSectionType:(SectionType)sectionType;
-- (NSIndexPath *)getIndexPathWithSectionType:(SectionType)sectionType rowType:(RowType)rowType;
-- (void)setupRowTag;
-- (NSIndexPath *)getIndexPathFromRowTag:(NSInteger)rowTag;
+```swift
+// MARK: - Public
+public func getRowTypeWith(type: SectionType, row: NSInteger) -> NSInteger
+public func getSectionTitleinSection(section: NSInteger) -> String?
+public func getSectionLeftIconinSection(section: NSInteger) -> UIImage?
+public func getSectionTypeinSection(section: NSInteger) -> SectionType
+public func hideRows(hide: Bool, inSection section: NSInteger)
+public func hiddenRowsinSection(section: NSInteger) -> Bool
+public func getIndexSetWithSectionType(sectionType: SectionType) -> NSIndexSet?
+public func getIndexPathWithSectionType(sectionType: SectionType, rowType: RowType) -> NSIndexPath?
+public func setupRowTag()
+public func getIndexPathFromRowTag(rowTag: NSInteger) -> NSIndexPath
 ```
 #### Tag
 
 - Because the cells have reuse feature, somtimes we need to tag the cell/componenst if want to recognize the specific cell/components, thus  `IRCollectionTableViewModel` provides a tag feature
 
 - Setup tags by `setupRowTag`, it save the tag information in the `tagRange` which is in the `RowBasicModelItem`
-```objc
+```swift
 - (void)setupRows {
     ...
     
-    [self setupRowTag];
+    self.setupRowTag()
 }
 ```
 
 - Get tag
-```objc
-TableViewRowItem *row = (TableViewRowItem *)[item.rows objectAtIndex:[indexPath row]];
-tag = row.tagRange.location;
+```swift
+let row = item.rows[indexPath.row]
+let tag = row.tagRange.location
 ```
 
 - Get indexPath by tag
-```objc
-- (NSIndexPath *)getIndexPathFromRowTag:(NSInteger)rowTag;
+```swift
+public func getIndexPathFromRowTag(rowTag: NSInteger) -> NSIndexPath
 ```
 
 - Sometimes you want to tag the UI components like `UITextField`, use `setTagRangeLength`
-```objc
-TableViewRowItem *row = [[TableViewRowItem alloc] initWithType:RowType_DemoRow withTitle:@"Demo Row"];
-[row setTagRangeLength:2];
+```swift
+var row = TableViewRowItem.init(type: ProfileRowType.RowType_DemoRow.rawValue, title: "Demo Row")
+row.setTagRangeLength(2)
 
 ...
 
-[self setupRowTag];
+self.setupRowTag()
 ```
 
 - Then get tags
-```objc
-TableViewRowItem *row = (TableViewRowItem *)[item.rows objectAtIndex:[indexPath row]];
-tag1 = row.tagRange.location;
-tag2 = row.tagRange.location + 1;
+```swift
+let row = item.rows[indexPath.row]
+let tag1 = row.tagRange.location
+let tag2 = row.tagRange.location + 1
 
-cell.textField1.tag = tag1;
-cell.textField2.tag = tag2;
+cell.textField1.tag = tag1
+cell.textField2.tag = tag2
 ```
 
-- The tags are mapping to the same index path
-```objc
-[self getIndexPathFromRowTag:tag1] == [self getIndexPathFromRowTag:tag2]
+- If you wnat to check the tags are mapping to the same index path
+```swift
+self.getIndexPathFromRowTag(tag1) == self.getIndexPathFromRowTag(tag2)
 ```
 
 Now, you can easy to tag anyhing you want.
@@ -260,62 +260,62 @@ Now, you can easy to tag anyhing you want.
 
 #### Get Row Type
 
-- Hide rows for specific setion by `(void)hideRows:(BOOL)hide inSection:(NSInteger)section`
+- Get row type
 
-```objc
-- (NSInteger)getRowTypeWith:(SectionType)type row:(NSInteger)row;
+```swift
+self.getRowTypeWith(type: 0, row: 0)
 ```
 
 #### Get Section Title
 
 - Get section title which set in the `SectionBasicModelItem`
 
-```objc
-- (NSString *)getSectionTitleinSection:(NSInteger)section;
+```swift
+self.getSectionTitleinSection(section: 0)
 ```
 
 #### Get Section Left Icon
 
 - Get section icon which set in the `SectionBasicModelItem`
 
-```objc
-- (UIImage *)getSectionLeftIconinSection:(NSInteger)section;
+```swift
+self.getSectionLeftIconinSection(section: 0)
 ```
 
 #### Get Section Type
 
 - Get section type by section index
 
-```objc
-- (SectionType)getSectionTypeinSection:(NSInteger)section;
+```swift
+self.getSectionTypeinSection(section: 0)
 ```
 
 #### Hide Rows
 
-- Hide rows for specific setion by `(void)hideRows:(BOOL)hide inSection:(NSInteger)section`
-- Check hidden status by `(BOOL)hiddenRowsinSection:(NSInteger)section`
+- Hide rows for specific setion by `public func hideRows(hide: Bool, inSection section: NSInteger)`
+- Check hidden status by `public func hiddenRowsinSection(section: NSInteger) -> Bool`
 
-```objc
-- (void)hideRows:(BOOL)hide inSection:(NSInteger)section;
-- (BOOL)hiddenRowsinSection:(NSInteger)section;
+```swift
+if self.hiddenRowsinSection(section: 0) {
+    self.hideRows(hide: false, inSection: 0)
+}
 ```
 
 #### Get Index Set
 
 - Get index of section by section type
 
-```objc
-- (NSIndexSet *)getIndexSetWithSectionType:(SectionType)sectionType;
+```swift
+self.getIndexSetWithSectionType(sectionType: .DemoSection)
 ```
 
 #### Get IndexPath
 
 - Get index path by section type and row type
 
-```objc
-- (NSIndexPath *)getIndexPathWithSectionType:(SectionType)sectionType rowType:(RowType)rowType;
+```swift
+self.getIndexPathWithSectionType(sectionType: .DemoSection, rowType: .RowType_DemoRow)
 ```
-
 
 
 ## Screenshots
