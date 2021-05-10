@@ -1,0 +1,6 @@
+framework module IRCollectionTableViewModel_swift {
+  umbrella header "IRCollectionTableViewModel-swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
